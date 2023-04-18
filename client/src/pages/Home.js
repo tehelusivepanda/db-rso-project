@@ -20,7 +20,7 @@ function Home() {
           <div className="event" onClick={() => {history(`/viewevent/${value.id}`)}}>
             <div className="name"> {value.name} </div>
             <div className="description">{value.description}</div>
-            <div className="category">{value.category}</div>
+            <div className="category">{value.category} {value.university}</div>
           </div>
         );
       })}

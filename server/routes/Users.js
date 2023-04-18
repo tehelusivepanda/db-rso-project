@@ -6,11 +6,12 @@ const { sign } = require("jsonwebtoken");
 const { validate } = require("../middlewares/AuthMiddleware");
 
 router.post("/", async (req, res) => {
-  const { username, password, level } = req.body;
+  const { username, password, university, level } = req.body;
   bcrypt.hash(password, 10).then((hash) => {
     Users.create({
       username: username,
       password: hash,
+      university: university,
       level: level,
     });
     res.json("REGISTER SUCCESS");
@@ -30,6 +31,7 @@ router.post("/login", async (req, res) => {
     const access = sign({
       username: user.username,
       id: user.id,
+      university: user.university,
       level: user.level,
     }, "swag");
 

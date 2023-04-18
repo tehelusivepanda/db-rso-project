@@ -18,7 +18,7 @@ function AddUni() {
         name: Yup.string().required("Can't be empty"),
         description: Yup.string(),
         location: Yup.string().required(),
-        num_students: Yup.number(),
+        num_students: Yup.number().min(100).required("Please check fields again"),
     });
 
     const onSubmit = (data) => {
@@ -31,23 +31,23 @@ function AddUni() {
         <div className="addUniPage">
             <Formik initialValues={initVal} onSubmit={onSubmit} validationSchema={validationSchema}>
                 <Form className="formContainer">
-                    <label>Name of Event: </label>
+                    <label>University Name: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="name" placeholder="Name of event" />
+                    <Field id="inputAddEvent" name="name" placeholder="Name of university" />
 
                     <label>Description: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="description" placeholder="Date" />
+                    <Field id="inputAddEvent" name="description" placeholder="Describe your university" />
 
                     <label>Location: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="location" placeholder="contact_phone #" />
+                    <Field id="inputAddEvent" name="location" placeholder="Where are you?" />
 
                     <label>Student Population: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="num_students" placeholder="Contact email" />
+                    <Field id="inputAddEvent" name="num_students" placeholder="How many students?" />
 
-                    <button type="submit">Create Event</button>
+                    <button type="submit">Register University</button>
                 </Form>
             </Formik>
         </div>

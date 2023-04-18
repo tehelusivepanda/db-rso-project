@@ -10,12 +10,14 @@ function Register() {
   const initialValues = {
     username: "",
     password: "",
+    university: "",
     level: "",
   };
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username cannot be empty"),
     password: Yup.string().required("Password required"),
+    university: Yup.string(),
     level: Yup.string().required("Select an option"),
   });
 
@@ -53,9 +55,18 @@ function Register() {
             placeholder="•••••••••"
           />
 
+          <label>University: </label>
+          <ErrorMessage name="name" component="span" />
+          <Field as="select" id="inputAddEvent" name="university" placeholder="category">
+            <option value="default">    </option>
+            <option value="UCF">UCF</option>
+            <option value="USF">USF</option>
+            <option value="other">Other</option>
+          </Field>
+
           <label>User Level: </label>
           <ErrorMessage name="name" component="span" />
-          <Field as="select" name="level" placeholder="category">
+          <Field as="select" id="inputAddEvent" name="level" placeholder="category">
             <option value="default">    </option>
             <option value="student">Student</option>
             <option value="admin">Admin</option>

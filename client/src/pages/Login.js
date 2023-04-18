@@ -25,6 +25,7 @@ function Login() {
                 setAuthState({
                     username: response.data.username,
                     id: response.data.id,
+                    university: response.data.university,
                     level: response.data.level,
                     status: true
                 });

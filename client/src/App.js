@@ -6,15 +6,19 @@ import ViewEvent from "./pages/ViewEvent";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AddUni from "./pages/AddUni";
-import { Auth } from "./helpers/Auth"
+import AddRso from "./pages/AddRso";
+import ViewRso from "./pages/ViewRso";
+import { Auth } from "./helpers/Auth";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "./ucf.png";
+import vu from "./vu.png";
 
 function App() {
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
+    university: "",
     level: "",
     status: false
   });
@@ -31,6 +35,7 @@ function App() {
           setAuthState({
             username: response.data.username,
             id: response.data.id,
+            university: response.data.university,
             level: response.data.level,
             status: true
           });
@@ -42,6 +47,7 @@ function App() {
     setAuthState({
       username: "",
       id: 0,
+      university: "",
       level: "",
       status: false
     });
@@ -61,13 +67,30 @@ function App() {
               </>
             ) : (
               <>
-                <Link className="link" to="/addevent">Add an Event</Link>
+                <Link className="link" to="/addevent">Add Event</Link>
                 <button className="logout" onClick={logout}>Logout</button>
+              </>
+            )}
+            {authState.status && (authState.level !== "admin" || authState.level !== "superadmin") ? (
+              <>
+                <Link className="link" to="/viewrso">View RSOs</Link>
+              </>
+            ) : (
+              <>
+              </>
+            )}
+            {authState.level === "admin" ? (
+              <>
+                <Link className="link" to="/addrso">Add RSO</Link>
+              </>
+            ) : (
+              <>
               </>
             )}
             {authState.level === "superadmin" ? (
               <>
-              <Link className="link" to="/adduni">Register University</Link>
+                <Link className="link" to="/addrso">Register RSO</Link>
+                <Link className="link" to="/adduni">Register University</Link>
               </>
             ) : (
               <>
@@ -80,7 +103,16 @@ function App() {
                 <></>
                )}
             </div>
-            <img src={logo} alt="logo" />
+            {authState.level === "superadmin" ? (
+              <>
+                              <img src={vu} alt="vu" />
+                              </>
+            ) : (
+              <>
+              <img src={logo} alt="logo" />
+              </>
+            )}
+
 
           </div>
           <Routes>
@@ -90,6 +122,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/adduni" element={<AddUni />} />
+            <Route path="/addrso" element={<AddRso />} />
+            <Route path="/viewrso" element={<ViewRso />} />
           </Routes>
         </Router>
       </Auth.Provider>

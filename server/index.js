@@ -20,6 +20,9 @@ app.use("/reviews", reviewRouter);
 const userRouter = require("./routes/Users");
 app.use("/auth", userRouter);
 
+const rsoRouter = require("./routes/RSOs");
+app.use("/rsos", rsoRouter);
+
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {
     console.log("Server running on port 3001");

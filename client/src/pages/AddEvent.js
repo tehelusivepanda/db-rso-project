@@ -10,6 +10,7 @@ function AddEvent() {
     const initVal = {
         name: "",
         category: "",
+        privacy: "",
         description: "",
         time: "",
         date: "",
@@ -20,6 +21,7 @@ function AddEvent() {
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("Can't be empty"),
         category: Yup.string(),
+        privacy: Yup.string().required("Please select an option"),
         description: Yup.string(),
         time: Yup.string().required(),
         date: Yup.string().required(),
@@ -53,12 +55,21 @@ function AddEvent() {
                         <option value="Fun/Other">Fun/Other</option>
                     </Field>
 
+                    <label>Public/Private?: </label>
+                    <ErrorMessage name="name" component="span" />
+                    <Field as="select" id="inputAddEvent" name="privacy" placeholder="privacy">
+                        <option value="default">    </option>
+                        <option value="Educational">Public</option>
+                        <option value="Fundraiser">Private</option>
+                        <option value="Fundraiser">RSO only</option>
+                    </Field>
+
                     <label>Description (optional): </label>
-                    <Field id="inputAddEvent" name="description" placeholder="description" />
+                    <Field id="inputAddEvent" name="description" placeholder="Description" />
 
                     <label>Time: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="time" placeholder="time of event" />
+                    <Field id="inputAddEvent" name="time" placeholder="Time of event" />
 
                     <label>Date: </label>
                     <ErrorMessage name="name" component="span" />
@@ -66,7 +77,7 @@ function AddEvent() {
 
                     <label>Contact Phone Number: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field id="inputAddEvent" name="contact_phone" placeholder="contact_phone #" />
+                    <Field id="inputAddEvent" name="contact_phone" placeholder="Contact phone" />
 
                     <label>Contact Email: </label>
                     <ErrorMessage name="name" component="span" />
