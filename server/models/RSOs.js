@@ -38,5 +38,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
 
+    RSOs.associate = (models) => {
+      RSOs.hasMany(models.Events, {
+        onDelete: "cascade",
+      });
+    };
+
     return RSOs;
   }

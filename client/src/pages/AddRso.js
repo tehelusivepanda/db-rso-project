@@ -63,7 +63,7 @@ function AddRso() {
 
                     <label>University: </label>
                     <ErrorMessage name="name" component="span" />
-                    <Field as="select" name="university" placeholder="category">
+                    <Field as="select" id="inputAddEvent" name="university" placeholder="category">
                         <option value="default">    </option>
                         <option value="University of Central Florida">University of Central Florida</option>
                         <option value="University of South Florida">University of South Florida</option>

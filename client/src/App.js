@@ -115,6 +115,17 @@ function App() {
 
 
           </div>
+
+          <div className="title">
+            {authState.status ? (
+              <></>
+            ) : (
+              <>
+              Welcome To the College Event Manager Website
+              </>
+            )}
+            </div>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/addevent" element={<AddEvent />} />
